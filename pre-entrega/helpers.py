@@ -21,7 +21,7 @@ def wait_for_element(driver, by, value, timeout=10):
         )
         return element
     except TimeoutException:
-        raise TimeoutException(f"Elemento no encontrado: {by}={value} después de {timeout} segundos.")
+        return None
     
 def wait_for_clickable(driver, by, value, timeout=10):
     '''
@@ -39,8 +39,8 @@ def wait_for_clickable(driver, by, value, timeout=10):
         )
         return element
     except TimeoutException:
-        raise TimeoutException(f"Elemento no clickeable: {by}={value} después de {timeout} segundos.")
-    
+        return None
+
 def find_element(driver, by, value):
     '''
     Encuentra un elemento en la página.
@@ -49,7 +49,7 @@ def find_element(driver, by, value):
         element = driver.find_element(by, value)
         return element
     except NoSuchElementException:
-        raise NoSuchElementException(f"Elemento no encontrado: {by}={value}.")
+        return None
 
 def find_elements(driver, by, value):
     '''
@@ -59,8 +59,8 @@ def find_elements(driver, by, value):
         elements = driver.find_elements(by, value)
         return elements
     except NoSuchElementException:
-        raise NoSuchElementException(f"Elementos no encontrados: {by}={value}.")
-
+        return []
+    
 def login(driver, username, password):
     '''
     Realiza el login en la aplicación Saucedemo.
