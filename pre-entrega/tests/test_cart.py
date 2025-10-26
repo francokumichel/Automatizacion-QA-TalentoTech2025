@@ -10,7 +10,7 @@ def test_cart_funcionality(driver):
     login(driver, "standard_user", "secret_sauce")
 
     # Primero verificamos que el carrito esté vacío inicialmente
-    assert not wait_for_element(driver, By.CLASS_NAME, "shopping_cart_badge", 1), "El carrito debería estar vacío al iniciar sesión."
+    assert not wait_for_element(driver, By.CLASS_NAME, "shopping_cart_badge", 5), "El carrito debería estar vacío al iniciar sesión."
 
     # Buscamos el primer producto y verificamos su presencia
     products = find_elements(driver, By.CLASS_NAME, "inventory_item")
