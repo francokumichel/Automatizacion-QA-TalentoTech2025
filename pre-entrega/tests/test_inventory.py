@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from helpers import wait_for_element, wait_for_clickable, is_element_displayed, login
+from helpers import wait_for_element, wait_for_clickable, login
 
 def test_verify_catalog(driver):
     '''

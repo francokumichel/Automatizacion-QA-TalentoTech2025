@@ -2,7 +2,7 @@ import pytest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from helpers import login, is_element_displayed
+from helpers import login
 
 @pytest.mark.parametrize("username, password", [
     ("standard_user", "secret_sauce"),
