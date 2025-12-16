@@ -1,0 +1,75 @@
+name: Test Automation Framework
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Instalar Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Cache dependencias
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Instalar Chrome para Selenium
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+
+      - name: Crear directorios de reportes
+        run: |
+          mkdir -p reports
+          mkdir -p logs
+
+      - name: Ejecutar Tests BDD con Behave
+        continue-on-error: true
+        run: |
+          behave -t @smoke -f json -o reports/behave_smoke.json -f pretty
+
+      - name: Ejecutar Tests Pytest + BDD
+        continue-on-error: true
+        run: |
+          pytest tests_behave/ -v --html=reports/pytest_report.html --self-contained-html
+
+      - name: Ejecutar Suite BDD Completa (permite fallos)
+        continue-on-error: true
+        run: |
+          behave -f json -o reports/behave_full.json -f pretty
+
+      - name: Upload reportes HTML
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-reports
+          path: |
+            reports/
+            logs/
+
+      - name: Upload screenshots (si existen)
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: screenshots
+          path: reports/screens/
+          if-no-files-found: ignore
