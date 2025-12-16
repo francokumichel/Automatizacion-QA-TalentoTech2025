@@ -23,40 +23,58 @@ Solo BDD (Behave)
 
 - Todos los escenarios
 
+```
 behave
+```
 
 - Solo smoke tests
 
+```
 behave -t @smoke
+```
 
 - Solo regression tests
 
+```
 behave -t @regression
+```
 
 - Con reportes HTML
 
+```
 behave -f html -o reports/behave.html
-
-Solo Pytest
+```
 
 ## Tests de integración BDD
 
+```
 pytest tests_behave/ -v
+```
 
 ## Solo smoke
 
+```
 pytest -m smoke -v
+```
 
 ## Tests lentos
 
+```
 pytest -m slow -v
+```
+
 Framework completo (Pytest + BDD)
 bash# Ejecución unificada
+
+```
 pytest -v
+```
 
 ## Con reporte HTML completo
 
+```
 pytest --html=reports/framework_report.html --self-contained-html
+```
 
 ## Estructura del proyecto
 
@@ -74,41 +92,52 @@ talentolab_framework/
 ```
 ## Features implementadas
 
-Login (login.feature)
+**Login (login.feature)**
 
-✅ Login exitoso con credenciales válidas (@smoke)
-✅ Login fallido con credenciales inválidas (@regression)
-✅ Validación de campos vacíos (@regression)
+- Login exitoso con credenciales válidas (@smoke)
+- Login fallido con credenciales inválidas (@regression)
+- Validación de campos vacíos (@regression)
 
-Carrito (cart.feature)
+**Carrito (cart.feature)**
 
-✅ Agregar producto al carrito (@smoke)
-✅ Agregar múltiples productos (@regression)
-✅ Persistencia del carrito entre páginas
+- Agregar producto al carrito (@smoke)
+- Agregar múltiples productos (@regression)
+- Persistencia del carrito entre páginas
 
 ## Reportes generados
 
+```
 Pytest HTML: reports/pytest_report.html
 Behave HTML: reports/behave.html
 Behave JSON: reports/behave.json
 Logs detallados: logs/bdd_suite.log
 Screenshots: reports/screens/ (en fallos)
+```
 
 ## Comandos útiles
 bash# Ejecutar solo login scenarios
+
+```
 behave -t @smoke features/login.feature
+```
 
 ## Ejecutar solo cart scenarios
 
+```
 behave features/cart.feature
+```
 
 ## Debug mode con salida detallada
 
+```
 behave -v -s
+```
 
 ## Generar reportes múltiples
 
+```
 behave -f json -o reports/behave.json -f html -o reports/behave.html -f pretty
+```
 
 ## Tags disponibles
 
@@ -121,34 +150,42 @@ behave -f json -o reports/behave.json -f html -o reports/behave.html -f pretty
 
 Este framework forma parte del proyecto final del curso y demuestra:
 
-✅ BDD con Gherkin legible para stakeholders
-✅ Integración Pytest + Behave
-✅ Page Object Model reutilizable
-✅ Reportes HTML profesionales
-✅ Logging centralizado y capturas automáticas
-✅ Preparación para CI/CD
+- BDD con Gherkin legible para stakeholders
+- Integración Pytest + Behave
+- Page Object Model reutilizable
+- Reportes HTML profesionales
+- Logging centralizado y capturas automáticas
+- Preparación para CI/CD
 
 Para talentolab_framework:
 bashcd talentolab_framework
 
 ## Instalar dependencias
 
+```
 pip install -r requirements.txt
+```
 
 ## Ejecutar framework completo
 
+```
 pytest -v
+```
 
 ## Solo BDD smoke
 
+```
 behave -t @smoke
+```
 
-# Solo BDD regression
+## Solo BDD regression
 
+```
 behave -t @regression
+```
 
-# Reportes completos
+## Reportes completos
 
+```
 behave -f html -o reports/behave.html -f json -o reports/behave.json
-
-![CI Status](https://github.com/emilianospinoso/talentolab-automation-framework/actions/workflows/ci.yml/badge.svg)
+```
