@@ -1,58 +1,66 @@
-# talentolab-automation-framework
+# Proyecto final - Automatización
 
-Framework completo de testing que integra Pytest con Behave (BDD) para el proyecto final del curso.
+El objetivo del Trabajo Final Integrador fue desarrollar un framework de automatización de pruebas completo, que combine todos los conocimientos adquiridos a lo largo del curso. Este proyecto consiste en la creación de un framework de testing automatizado en Python, utilizando Selenium WebDriver para pruebas de UI, la biblioteca Requests para pruebas de API, y aplicando patrones de diseño como Page Object Model para estructurar el código de manera eficiente y mantenible. 
 
 ## 🚀 Instalación y configuración
 
-# Instalar dependencias
+1. Instalar dependencias
 
+```bash
 pip install -r requirements.txt
+```
 
-# Verificar instalación
+2. Verificar instalación
 
+```bash
 pytest --version
 behave --version
+```
 
-📋 Ejecutar tests
+## 📋 Ejecutar tests
+
 Solo BDD (Behave)
 
-# Todos los scenarios
+- Todos los escenarios
 
 behave
 
-# Solo smoke tests
+- Solo smoke tests
 
 behave -t @smoke
 
-# Solo regression tests
+- Solo regression tests
 
 behave -t @regression
 
-# Con reportes HTML
+- Con reportes HTML
 
 behave -f html -o reports/behave.html
 
 Solo Pytest
 
-# Tests de integración BDD
+## Tests de integración BDD
 
 pytest tests_behave/ -v
 
-# Solo smoke
+## Solo smoke
 
 pytest -m smoke -v
 
-# Tests lentos
+## Tests lentos
 
 pytest -m slow -v
 Framework completo (Pytest + BDD)
 bash# Ejecución unificada
 pytest -v
 
-# Con reporte HTML completo
+## Con reporte HTML completo
 
 pytest --html=reports/framework_report.html --self-contained-html
-📁 Estructura del proyecto
+
+## Estructura del proyecto
+
+```
 talentolab_framework/
 ├── features/ # Features BDD en Gherkin
 │ ├── steps/ # Step definitions
@@ -63,7 +71,9 @@ talentolab_framework/
 ├── utils/ # Utilidades y logging
 ├── logs/ # Archivos de log
 └── reports/ # Reportes HTML y capturas
-🎯 Features implementadas
+```
+## Features implementadas
+
 Login (login.feature)
 
 ✅ Login exitoso con credenciales válidas (@smoke)
@@ -76,7 +86,7 @@ Carrito (cart.feature)
 ✅ Agregar múltiples productos (@regression)
 ✅ Persistencia del carrito entre páginas
 
-📊 Reportes generados
+## Reportes generados
 
 Pytest HTML: reports/pytest_report.html
 Behave HTML: reports/behave.html
@@ -84,29 +94,31 @@ Behave JSON: reports/behave.json
 Logs detallados: logs/bdd_suite.log
 Screenshots: reports/screens/ (en fallos)
 
-🔧 Comandos útiles
+## Comandos útiles
 bash# Ejecutar solo login scenarios
 behave -t @smoke features/login.feature
 
-# Ejecutar solo cart scenarios
+## Ejecutar solo cart scenarios
 
 behave features/cart.feature
 
-# Debug mode con salida detallada
+## Debug mode con salida detallada
 
 behave -v -s
 
-# Generar reportes múltiples
+## Generar reportes múltiples
 
 behave -f json -o reports/behave.json -f html -o reports/behave.html -f pretty
-🎭 Tags disponibles
+
+## Tags disponibles
 
 @smoke: Tests críticos y rápidos
 @regression: Suite completa de regresión
 @ui: Tests de interfaz de usuario
 @wip: Work in progress (excluidos por defecto)
 
-🔗 Integración con el proyecto final
+## Integración con el proyecto final
+
 Este framework forma parte del proyecto final del curso y demuestra:
 
 ✅ BDD con Gherkin legible para stakeholders
@@ -119,15 +131,15 @@ Este framework forma parte del proyecto final del curso y demuestra:
 Para talentolab_framework:
 bashcd talentolab_framework
 
-# Instalar dependencias
+## Instalar dependencias
 
 pip install -r requirements.txt
 
-# Ejecutar framework completo
+## Ejecutar framework completo
 
 pytest -v
 
-# Solo BDD smoke
+## Solo BDD smoke
 
 behave -t @smoke
 
